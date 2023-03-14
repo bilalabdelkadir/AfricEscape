@@ -6,7 +6,7 @@ module.exports = {
       backgroundColor: {
         primary: "1ec28b",
         "primary-gredient":
-          "linear-gradient(180deg, rgba(30,194,139,1) 26%, rgba(30,194,139,0.7371323529411764) 61%, rgba(30,194,139,0) 95%);",
+          "linear-gradient(180deg, rgba(186,244,225,0.9) 31%, rgba(186,244,225,0.7) 89%);",
       },
       textColor: {
         primary: "2B2945",
