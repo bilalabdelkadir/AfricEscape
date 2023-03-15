@@ -69,7 +69,7 @@ const Hero = () => {
           </div>
         </Slider>
       </div>
-      <h1 className="text-4xl font-bold text-center self-center m-4 mx-auto mb-10">
+      <h1 className="text-4xl font-bold text-center self-center  mx-auto">
         Explore Now
       </h1>
     </div>
