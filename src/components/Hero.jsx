@@ -37,7 +37,7 @@ const Hero = () => {
           more than 100 destination to choose from get started now
         </p>
       </div>
-      <div className="w-full lg:w-[50%] text-center p-10 bg-option backdrop-blur-md rounded-[1rem]">
+      <div className="w-full lg:w-[50%] text-center p-10 bg-option backdrop-blur-md rounded-[1rem] mb-8">
         <Slider {...settings}>
           <div className="w-full h-[20rem">
             <img
@@ -69,6 +69,9 @@ const Hero = () => {
           </div>
         </Slider>
       </div>
+      <h1 className="text-4xl font-bold text-center self-center m-4 mx-auto mb-10">
+        Explore Now
+      </h1>
     </div>
   );
 };
