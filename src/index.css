@@ -1,5 +1,66 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Noto+Sans+Ethiopic:wght@400;700&display=swap");
+@import "../node_modules/slick-carousel/slick/slick.css";
+@import "../node_modules/slick-carousel/slick/slick-theme.css";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  @apply font-montserrat  text-primary font-medium;
+}
+.flex-nav {
+  @apply flex justify-between items-center;
+}
+
+.flex-centered {
+  @apply flex justify-evenly items-center;
+}
+
+.main-bg {
+  background: rgb(186, 244, 225);
+  background: linear-gradient(
+    180deg,
+    rgba(186, 244, 225, 1) 23%,
+    rgba(186, 244, 225, 0.2553396358543417) 100%
+  );
+}
+
+.btn {
+  @apply rounded-full px-5 py-2;
+}
+
+/* under line hover */
+
+.hover-underline-animation {
+  display: inline-block;
+  position: relative;
+  text-align: center;
+}
+
+.hover-underline-animation::after {
+  content: "";
+  position: absolute;
+  margin: 0 10px;
+  width: 80%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #1ec28b;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.hover-underline-animation:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: #1ec28b;
+}

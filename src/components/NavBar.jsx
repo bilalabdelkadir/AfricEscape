@@ -6,7 +6,7 @@ const NavBar = () => {
 
   return (
     <>
-      <nav className="border-2 border-primary flex-nav z-50 shadow fixed left-0 right-0 top-2 lg:top-4 w-full max-w-[1200px] py-4 px-10 rounded-full mx-auto bg-[#d6fff2] h-[4rem]">
+      <nav className="flex-nav z-50 shadow fixed left-0 right-0 top-2 lg:top-4 w-full max-w-[1200px] py-4 px-10 rounded-full mx-auto bg-[#d6fff2] h-[4rem]">
         <div>
           <a
             className="font-bold select-none text-option text-[1.5rem]"
@@ -31,7 +31,7 @@ const NavBar = () => {
             </li>
           </ul>
         </div>
-        <div className="hidden md:flex md:justify-self-end">
+        <div className="hidden lg:flex">
           <button className="mx-3 btn border font-semibold border-primary hover:bg-primary ease-out duration-200 hover:text-white">
             Log-In
           </button>
@@ -61,7 +61,7 @@ const NavBar = () => {
               </li>
             </ul>
           </div>
-          <div className="md:hidden flex flex-col w-64">
+          <div className="lg:hidden flex flex-col w-64">
             <button className="my-2 btn border font-semibold border-primary">
               Log-In
             </button>
