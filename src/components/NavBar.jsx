@@ -6,7 +6,7 @@ const NavBar = () => {
 
   return (
     <>
-      <nav className="flex-nav z-50 shadow fixed left-0 right-0 top-2 lg:top-4 w-full max-w-[1200px] py-4 px-10 rounded-full mx-auto bg-[#d6fff2] h-[4rem]">
+      <nav className="flex-nav z-50 new-shadow-2 fixed rounded-b-2xl left-0 right-0 top-0 w-full max-w-[1200px] py-4 px-10 mx-auto h-[4rem] bg-white">
         <div>
           <a
             className="font-bold select-none text-option text-[1.5rem]"
@@ -18,7 +18,7 @@ const NavBar = () => {
             </span>
           </a>
         </div>
-        <div className="hidden md:hidden lg:block ">
+        <div className="hidden md:hidden text-sm lg:block ">
           <ul className="flex-centered w-full">
             <li className="px-4 hover-underline-animation ">
               <a href="/explore">Discover</a>
@@ -27,15 +27,15 @@ const NavBar = () => {
               <a href="/Contact">Contact Us</a>
             </li>
             <li className="px-4 hover-underline-animation ">
-              <a href="/about">About US</a>
+              <a href="/about">About Us</a>
             </li>
           </ul>
         </div>
         <div className="hidden lg:flex">
-          <button className="mx-3 btn border font-semibold border-primary hover:bg-primary ease-out duration-200 hover:text-white">
+          <button className="mx-3 text-sm btn border font-semibold border-primary hover:bg-primary ease-out duration-200 hover:text-white">
             Log-In
           </button>
-          <button className="mx-3 btn bg-primary text-white font-semibold ">
+          <button className="mx-3 text-sm btn bg-primary text-white font-semibold hover:bg-opacity-50">
             Sign-Up
           </button>
         </div>
