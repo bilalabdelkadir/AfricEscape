@@ -17,11 +17,17 @@ const Hero = () => {
     slidesToScroll: 1,
     vertical: true,
     verticalSwiping: true,
+    beforeChange: function (currentSlide, nextSlide) {
+      console.log("before change", currentSlide, nextSlide);
+    },
+    afterChange: function (currentSlide) {
+      console.log("after change", currentSlide);
+    },
   };
   return (
     <div className="flex items-center overflow-hidden w-full mt-28 max-w-[1200px] mx-auto flex-wrap justify-between">
       <div className="w-full lg:w-[50%] text-center lg:text-left p-10">
-        <h1 className="font-bold text-5xl md:text-6xl mb-4 md:mb-2  lg:mb-5">
+        <h1 className="font-bold p-4 md:p-0 text-5xl md:text-6xl mb-4 md:mb-2 lg:mb-5">
           Journey to Unforgettable Places
         </h1>
         <h1 className="font-amharic font-bold text-4xl md:text-5xl mb-5 lg:mb-5">
@@ -33,7 +39,7 @@ const Hero = () => {
       </div>
       <div className="w-full lg:w-[50%] text-center p-10 shadow-lg rounded-[1rem] mb-8">
         <Slider {...settings}>
-          <div className="w-full h-[20rem]">
+          <div className="w-full h-[10rem] md:h-[20rem]">
             <img
               className="w-full h-full object-cover"
               src={Nature_1}
