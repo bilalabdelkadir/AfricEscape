@@ -29,9 +29,17 @@
   );
   height: 50vh;
 }
+.main-bg-2 {
+  background: rgb(186, 244, 225);
+  background: linear-gradient(
+    180deg,
+    rgba(186, 244, 225, 1) 23%,
+    rgba(186, 244, 225, 0) 100%
+  );
+}
 
 .btn {
-  @apply rounded-full px-5 py-2;
+  @apply rounded-xl px-5 py-2;
 }
 
 /* under line hover */
@@ -68,4 +76,11 @@
 
 .color-white {
   color: white;
+}
+.new-shadow {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.new-shadow-2 {
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 9px;
 }

@@ -23,6 +23,9 @@ module.exports = {
         montserrat: ["Montserrat", "sans-serif"],
         amharic: ["Noto Sans Ethiopic", "sans-serif"],
       },
+      screens: {
+        xs: "490px",
+      },
     },
   },
   plugins: [],
