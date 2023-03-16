@@ -47,7 +47,7 @@ const NavBar = () => {
         </div>
       </nav>
       {showMenu && (
-        <nav className="bg-white fixed right-0 gap-10 top-20 w-full md:w-[50%] h-full z-50 flex flex-col items-center">
+        <nav className="bg-white fixed right-0 gap-10 top-12 w-full md:w-[50%] h-full z-50 flex flex-col items-center">
           <div className="py-4 px-6">
             <ul className="flex flex-col mt-4 font-medium gap-4 ">
               <li className="py-2 border-b-2 border-border-color hover-underline-animation">
