@@ -7,10 +7,10 @@ import Nature_4 from "../assets/nature_4.jpg";
 
 const Hero = () => {
   const settings = {
-    autoplay: true,
-    speed: 2000,
-    autoplaySpeed: 2000,
-    cssEase: "linear",
+    // autoplay: true,
+    // speed: 2000,
+    // autoplaySpeed: 2000,
+    // cssEase: "linear",
     dots: true,
     infinite: true,
     slidesToShow: 1,
@@ -27,10 +27,10 @@ const Hero = () => {
   return (
     <div className="flex items-center overflow-hidden w-full mt-28 max-w-[1200px] mx-auto flex-wrap justify-between">
       <div className="w-full lg:w-[50%] text-center lg:text-left p-10">
-        <h1 className="font-bold p-4 md:p-0 text-5xl md:text-6xl mb-4 md:mb-2 lg:mb-5">
+        <h1 className="font-bold text-4xl overflow-hidden md:mx-auto md:text-6xl mb-4 md:mb-2 lg:mb-5">
           Journey to Unforgettable Places
         </h1>
-        <h1 className="font-amharic font-bold text-4xl md:text-5xl mb-5 lg:mb-5">
+        <h1 className="font-amharic font-bold text-3xl md:text-5xl mb-5 lg:mb-5">
           ጉዞ የማይረሱ ቦታዎች
         </h1>
         <p className="font-light">
