@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FiAlignRight, FiXCircle } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -32,12 +33,18 @@ const NavBar = () => {
           </ul>
         </div>
         <div className="hidden lg:flex">
-          <button className="mx-3 text-sm btn border font-semibold border-primary hover:bg-primary ease-out duration-200 hover:text-white">
+          <Link
+            to="/login"
+            className="mx-3 text-sm btn border font-semibold border-primary hover:bg-primary ease-out duration-200 hover:text-white"
+          >
             Log-In
-          </button>
-          <button className="mx-3 text-sm btn bg-primary text-white font-semibold hover:bg-opacity-50">
+          </Link>
+          <Link
+            to="/signup"
+            className="mx-3 text-sm btn bg-primary text-white font-semibold hover:bg-opacity-50"
+          >
             Sign-Up
-          </button>
+          </Link>
         </div>
         <div
           className="cursor-pointer lg:hidden "

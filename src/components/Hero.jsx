@@ -31,7 +31,7 @@ const Hero = () => {
           Journey to Unforgettable Places
         </h1>
         <h1 className="font-amharic font-bold text-3xl md:text-5xl mb-5 lg:mb-5">
-          ጉዞ የማይረሱ ቦታዎች
+          ጉዞ ወደ የማይረሱ ቦታዎች
         </h1>
         <p className="font-light">
           more than 100 destination to choose from get started now
