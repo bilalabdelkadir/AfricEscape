@@ -50,7 +50,7 @@ const Login = () => {
                   <div className="space-y-5">
                     <div>
                       <label
-                        for="email"
+                        htmlFor="email"
                         className="text-base font-medium text-gray-900"
                       >
                         Email address
@@ -68,7 +68,7 @@ const Login = () => {
                     </div>
                     <div>
                       <label
-                        for="password"
+                        htmlFor="password"
                         className="text-base font-medium text-gray-900"
                       >
                         Password
