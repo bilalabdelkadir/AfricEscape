@@ -12,7 +12,10 @@ const Card = ({ tour }) => {
       <div className="h-[45%]">
         <img
           className="w-full h-full object-cover"
-          src={`http://127.0.0.1:3000/${tour.imageCover}` || Nature_3}
+          src={
+            `https://africescape-api.onrender.com/img/tours/${tour.imageCover}` ||
+            Nature_3
+          }
           alt="Mountain"
         />
       </div>

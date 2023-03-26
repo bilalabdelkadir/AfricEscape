@@ -65,7 +65,7 @@ const Setting = () => {
       ) : (
         <div className="rounded-full bg-white p-4">
           <img
-            src={`http://127.0.0.1:3000/img/users/${profilePic}`}
+            src={`https://africescape-api.onrender.com/img/users/${profilePic}`}
             alt="profile"
             className="rounded-full h-24 w-24 object-cover"
           />

@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
     try {
       setAuthState({ ...authState, loading: true });
       const response = await axios.post(
-        "http://127.0.0.1:3000/api/v1/users/login",
+        "https://africescape-api.onrender.com/api/v1/users/login",
         {
           email,
           password,

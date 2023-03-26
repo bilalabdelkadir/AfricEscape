@@ -74,7 +74,7 @@ const TourPage = () => {
                           <div className="w-24 h-24 p-2">
                             <img
                               className="w-full h-full object-cover rounded-full"
-                              src={`http://127.0.0.1:3000//img/users/${guide.photo}`}
+                              src={`https://africescape-api.onrender.com/img/users/${guide.photo}`}
                               alt="Mountain"
                             />
                           </div>
@@ -99,7 +99,7 @@ const TourPage = () => {
                   tour.images.map((image) => (
                     <img
                       className="w-[100wh] h-[40vh] md:w-[70wh] md:h-[70vh] object-cover md:m-4"
-                      src={`http://127.0.0.1:3000//img/tours/${image}`}
+                      src={`https://africescape-api.onrender.com/img/tours/${image}`}
                       alt="Mountain"
                       key={image.id}
                     />
