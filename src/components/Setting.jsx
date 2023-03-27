@@ -14,9 +14,6 @@ const Setting = () => {
   const [profilePic, setProfile] = useState(null);
   const [preview, setPreview] = useState(null);
   const [isloading, setisloading] = useState(true);
-  const [isEditing, setIsEditing] = useState(false);
-  const [successMessage, setSuccessMessage] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -29,6 +26,7 @@ const Setting = () => {
           setProfile(null);
         } else {
           setProfile(user.data.photo);
+          console.log(profilePic);
         }
         setisloading(false);
       } catch (error) {
@@ -58,10 +56,8 @@ const Setting = () => {
           "Content-Type": "multipart/form-data",
         },
       });
-      setSuccessMessage("Profile updated successfully!");
-      setIsEditing(false);
+      console.log(res);
     } catch (err) {
-      setErrorMessage("Failed to update profile. Please try again.");
       console.log(err.message);
     }
   };
@@ -75,8 +71,10 @@ const Setting = () => {
   };
 
   return (
-    <div className="flex flex-col items-center gap-4">
-      <h1 className="text-2xl font-bold text-gray-800">Update Your Profile</h1>
+    <div className="flex flex-col items-center gap-2">
+      <h1 className="text text-2xl font-bold text-gray-800">
+        Update Your Profile
+      </h1>
       {isloading ? (
         <Spinner />
       ) : (
@@ -94,12 +92,8 @@ const Setting = () => {
               />
             </div>
           )}
-          <form
-            className="flex flex-col items-center gap-2"
-            onSubmit={onUpdate}
-            disabled={!isEditing}
-          >
-            <label htmlFor="name" className="text-gray-800">
+          <div className="flex flex-col items-center gap-2">
+            <label htmlFor="name" className="text ">
               Name
             </label>
             <input
@@ -111,10 +105,9 @@ const Setting = () => {
               onChange={(e) => {
                 setname(e.target.value);
               }}
-              disabled={!isEditing}
             />
 
-            <label htmlFor="email" className="text-gray-800">
+            <label htmlFor="email" className="text ">
               Email
             </label>
             <input
@@ -126,10 +119,9 @@ const Setting = () => {
               onChange={(e) => {
                 setemail(e.target.value);
               }}
-              disabled={!isEditing}
             />
 
-            <label htmlFor="photo" className="text-gray-800">
+            <label htmlFor="photo" className="text ">
               Profile Picture
             </label>
             <input
@@ -138,45 +130,22 @@ const Setting = () => {
               id="photo"
               className="border border-gray-500 rounded-md p-2"
               onChange={handleFileChange}
-              disabled={!isEditing}
             />
             {preview && (
               <img
                 src={preview}
                 alt="preview"
-                className="h-24 w-24 object-cover rounded-full"
+                className="rounded-full h-24 w-24 object-cover"
               />
             )}
-            {isEditing ? (
-              <>
-                <button
-                  className="bg-blue-500 text-white rounded-md p-2"
-                  type="submit"
-                >
-                  Update
-                </button>
-                <button
-                  className="bg-gray-500 text-white rounded-md p-2"
-                  type="button"
-                  onClick={() => setIsEditing(false)}
-                >
-                  Cancel
-                </button>
-              </>
-            ) : (
-              <button
-                className="bg-blue-500 text-white rounded-md p-2"
-                type="button"
-                onClick={() => setIsEditing(true)}
-              >
-                Edit
-              </button>
-            )}
-            {successMessage && (
-              <p className="text-green-500">{successMessage}</p>
-            )}
-            {errorMessage && <p className="text-red-500">{errorMessage}</p>}
-          </form>
+          </div>
+
+          <button
+            className="bg-blue-500 text-white rounded-md p-2"
+            onClick={onUpdate}
+          >
+            Update
+          </button>
         </>
       )}
     </div>

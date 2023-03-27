@@ -14,10 +14,11 @@ const Login = () => {
   // if isLogged is true redirect user to home page
   const navigate = useNavigate();
   useEffect(() => {
-    if (isLogged) {
+    // Navigation was fixed
+    if (authState.token) {
       navigate("/");
     }
-  }, [isLogged, navigate]);
+  }, [authState]);
 
   return (
     <div className="bg-gray-200">

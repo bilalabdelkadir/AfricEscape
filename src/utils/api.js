@@ -1,27 +1,33 @@
 import axios from "axios";
+const baseUrl = "https://africescape-api.onrender.com/api/v1/tours"
+const bookUrl = "https://africescape-api.onrender.com/api/v1/bookings"
+const userUrl = "https://africescape-api.onrender.com/api/v1/users"
 
-export const fetchTours = async () => {
-  try {
-    const response = await axios.get(
-      "https://africescape-api.onrender.com/api/v1/tours"
-    );
-    return response.data.data.data;
-  } catch (error) {
-    return error.message;
-  }
-};
+
+// get all books
+export const fetchTours = () =>
+    axios.get(baseUrl).then(response => response.data.data.data)
 
 // fetch one tour by id
-export const fetchTour = async (id) => {
-  try {
-    const response = await axios.get(
-      `https://africescape-api.onrender.com/api/v1/tours/${id}`
-    );
-    return response.data.data.data;
-  } catch (error) {
-    return error.message;
-  }
-};
+export const fetchTour = (id) => 
+      axios.get(`${baseUrl}/${id}`).then(response => response.data.data.data)
+
+// fetch one tour by id
+export const logIn = (email, password) => 
+    axios.post(`${userUrl}/login`, {email, password} )
+
+// fetch one tour by id
+export const signUp = (name, email, password, passwordConfirm) => 
+    axios.post(`${userUrl}/signup`, { name, email, password, passwordConfirm } )
+
+// book tour
+export const bookTour = (id, token) => 
+      axios.post(`${bookUrl}/${id}/myBooking`, {}, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+      ).then(response => response.data)
 
 export const fetchUser = async (token) => {
   try {

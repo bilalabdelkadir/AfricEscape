@@ -9,9 +9,10 @@ const Card = ({ tour }) => {
       to={`/tours/${tour.slug}/${tour.id}`}
       className="sm:w-[47%] relative xs:w-[90%] md:w-[30%] shadow-lg lg:w-[27%] lg:m-4 new-shadow  overflow-hidden rounded-lg md:h-[27rem] h-[30rem]"
     >
+      {/* here added zoom effect on the image that are on the cards */}
       <div className="h-[45%]">
         <img
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover hover:scale-110 duration-300"
           src={
             `https://africescape-api.onrender.com/img/tours/${tour.imageCover}` ||
             Nature_3

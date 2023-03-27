@@ -1,0 +1,10 @@
+GET https://africescape-api.onrender.com/api/v1/tours
+
+###
+POST https://africescape-api.onrender.com/api/v1/users/signup
+Content-Type: application/json
+
+{   "name": "this is test", 
+    "email": "invalidemail@me.com", 
+    "password": "password", 
+    "passwordConfirm": "password" }

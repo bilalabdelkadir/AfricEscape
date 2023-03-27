@@ -6,59 +6,32 @@ const WriteReview = ({ tourId, token }) => {
   const [reviewText, setReviewText] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isopen, setIsOpen] = useState(false);
-  const [ratingError, setRatingError] = useState("");
-  const [reviewTextError, setReviewTextError] = useState("");
 
   const handleRatingClick = (value) => {
     setRating(value);
-    setRatingError("");
   };
 
   const handleReviewTextChange = (event) => {
     setReviewText(event.target.value);
-    setReviewTextError("");
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setIsSubmitted(true);
+    try {
+      const response = await axios.post(
+        `https://africescape-api.onrender.com/api/v1/tours/${tourId}/reviews`,
 
-    // Validate form inputs
-    let isValid = true;
-    if (rating === 0) {
-      setRatingError("Please select a rating");
-      isValid = false;
-    } else {
-      setRatingError("");
-    }
-    if (reviewText.trim() === "") {
-      setReviewTextError("Review text is required");
-      isValid = false;
-    } else if (reviewText.length > 500) {
-      setReviewTextError("Review text must be 500 characters or less");
-      isValid = false;
-    } else {
-      setReviewTextError("");
-    }
-
-    if (isValid) {
-      setIsSubmitted(true);
-      setReviewText("");
-      setRating(0);
-
-      try {
-        const response = await axios.post(
-          `https://africescape-api.onrender.com/api/v1/tours/${tourId}/reviews`,
-          { review: reviewText, rating },
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        console.log(response.data);
-      } catch (error) {
-        console.log(error.message);
-      }
+        { review: reviewText, rating },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.log(error.message);
     }
   };
 
@@ -90,7 +63,6 @@ const WriteReview = ({ tourId, token }) => {
               ))}
             </div>
           </div>
-          {ratingError && <p className="text-red-500">{ratingError}</p>}
           <div className="mb-4">
             <label
               htmlFor="review-text"
@@ -103,25 +75,18 @@ const WriteReview = ({ tourId, token }) => {
               name="review-text"
               rows="5"
               maxLength="500"
-              className={`w-full border border-gray-400 p-2 rounded-md ${
-                reviewTextError ? "border-red-500" : ""
-              }`}
+              className="w-full border border-gray-400 p-2 rounded-md"
               value={reviewText}
               onChange={handleReviewTextChange}
             ></textarea>
           </div>
-          {reviewTextError && <p className="text-red-500">{reviewTextError}</p>}
-          {isSubmitted ? (
-            <p className="text-green-500">Review submitted successfully!</p>
-          ) : (
-            <button
-              type="submit"
-              className="bg-blue-500 text-white py-2 px-4 rounded-md"
-              disabled={rating === 0 || reviewText.length === 0}
-            >
-              Submit
-            </button>
-          )}
+          <button
+            type="submit"
+            className="bg-blue-500 text-white py-2 px-4 rounded-md"
+            disabled={rating === 0 || reviewText.length === 0}
+          >
+            Submit
+          </button>
         </form>
       )}
     </div>
