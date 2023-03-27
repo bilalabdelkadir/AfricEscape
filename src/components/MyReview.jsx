@@ -1,186 +1,90 @@
 import React, { useEffect, useState } from "react";
-import { fetchUser } from "../utils/api";
+import { fetchUserReviews } from "../utils/api";
 import { useAuth } from "../Hooks/useAuth";
-import axios from "axios";
-import { CgProfile } from "react-icons/cg";
+import { Link } from "react-router-dom";
 import Spinner from "./Spinner";
 
-const Setting = () => {
+const MyReview = () => {
   const { authState } = useAuth();
   const { token } = authState;
-  const [user, setUser] = useState({});
-  const [name, setname] = useState("");
-  const [email, setemail] = useState("");
-  const [profilePic, setProfile] = useState(null);
-  const [preview, setPreview] = useState(null);
-  const [isloading, setisloading] = useState(true);
-  const [isEditing, setIsEditing] = useState(false);
-  const [successMessage, setSuccessMessage] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [reviews, setReviews] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const fetchUserData = async () => {
+    const fetchReviews = async () => {
       try {
-        const user = await fetchUser(token);
-        setUser(user);
-        setname(user.data.name);
-        setemail(user.data.email);
-        if (user.data.photo === "undefined") {
-          setProfile(null);
-        } else {
-          setProfile(user.data.photo);
-        }
-        setisloading(false);
+        const response = await fetchUserReviews(token);
+        setReviews(response.data.data.data);
       } catch (error) {
         console.log(error.message);
+      } finally {
+        setIsLoading(false);
       }
     };
-    fetchUserData();
-  }, []);
-
-  const onUpdate = async (e) => {
-    e.preventDefault();
-
-    try {
-      const formData = new FormData();
-      formData.append("name", name);
-      formData.append("email", email);
-      if (profilePic) {
-        formData.append("photo", profilePic);
-      }
-
-      const res = await axios({
-        method: "PATCH",
-        url: "https://africescape-api.onrender.com/api/v1/users/updateMe",
-        data: formData,
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "multipart/form-data",
-        },
-      });
-      setSuccessMessage("Profile updated successfully!");
-      setIsEditing(false);
-    } catch (err) {
-      setErrorMessage("Failed to update profile. Please try again.");
-      console.log(err.message);
-    }
-  };
-
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setProfile(file);
-      setPreview(URL.createObjectURL(file));
-    }
-  };
+    fetchReviews();
+  }, [token]);
 
   return (
-    <div className="flex flex-col items-center gap-4">
-      <h1 className="text-2xl font-bold text-gray-800">Update Your Profile</h1>
-      {isloading ? (
-        <Spinner />
+    <div className="w-full h-full flex flex-col items-center">
+      <h1 className="text-2xl font-bold text-gray-800">My Reviews</h1>
+      {isLoading ? (
+        <div className="relative left-0 top-40">
+          <Spinner />
+        </div>
+      ) : reviews.length > 0 ? (
+        <div className="w-full md:w-3/4 lg:w-[90%] xl:w-2/3 flex flex-col items-center">
+          {reviews.map((review) => (
+            <div
+              className="w-full bg-green-100 shadow-xl text-white flex flex-col md:flex-row justify-between items-center mx-auto my-2 p-5 rounded-xl"
+              key={review._id}
+            >
+              <div className="w-full md:w-1/2 mb-5 md:mb-0">
+                <img
+                  src={
+                    `https://africescape-api.onrender.com/img/tours/${review.tour.imageCover}` ||
+                    "https://picsum.photos/200"
+                  }
+                  alt={review.name}
+                  className="w-full h-auto rounded-lg"
+                />
+              </div>
+              <div className="text-center w-full md:w-1/2 ">
+                <h1 className="text-2xl font-bold mb-2">{review.tour.name}</h1>
+                <div className="flex items-center justify-center mb-2">
+                  {[...Array(review.rating)].map((_, index) => (
+                    <svg
+                      key={index}
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-6 w-6 fill-current text-yellow-400"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 14.472l-5.246 3.178 1.002-5.814L.5 7.322l5.82-.843L10 1.5l3.68 5.98 5.82.843-4.256 4.514 1.002 5.814z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  ))}
+                </div>
+                <p className="text-gray-800">"{review.review}"</p>
+              </div>
+            </div>
+          ))}
+        </div>
       ) : (
-        <>
-          {!profilePic ? (
-            <div className="rounded-full bg-white p-4">
-              <CgProfile size={100} />
-            </div>
-          ) : (
-            <div className="rounded-full bg-white p-4">
-              <img
-                src={`https://africescape-api.onrender.com/img/users/${profilePic}`}
-                alt="profile"
-                className="rounded-full h-24 w-24 object-cover"
-              />
-            </div>
-          )}
-          <form
-            className="flex flex-col items-center gap-2"
-            onSubmit={onUpdate}
-            disabled={!isEditing}
-          >
-            <label htmlFor="name" className="text-gray-800">
-              Name
-            </label>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              className="border border-gray-500 rounded-md p-1"
-              value={name}
-              onChange={(e) => {
-                setname(e.target.value);
-              }}
-              disabled={!isEditing}
-            />
-
-            <label htmlFor="email" className="text-gray-800">
-              Email
-            </label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              className="border border-gray-500 rounded-md p-1"
-              value={email}
-              onChange={(e) => {
-                setemail(e.target.value);
-              }}
-              disabled={!isEditing}
-            />
-
-            <label htmlFor="photo" className="text-gray-800">
-              Profile Picture
-            </label>
-            <input
-              type="file"
-              name="photo"
-              id="photo"
-              className="border border-gray-500 rounded-md p-2"
-              onChange={handleFileChange}
-              disabled={!isEditing}
-            />
-            {preview && (
-              <img
-                src={preview}
-                alt="preview"
-                className="h-24 w-24 object-cover rounded-full"
-              />
-            )}
-            {isEditing ? (
-              <>
-                <button
-                  className="bg-blue-500 text-white rounded-md p-2"
-                  type="submit"
-                >
-                  Update
-                </button>
-                <button
-                  className="bg-gray-500 text-white rounded-md p-2"
-                  type="button"
-                  onClick={() => setIsEditing(false)}
-                >
-                  Cancel
-                </button>
-              </>
-            ) : (
-              <button
-                className="bg-blue-500 text-white rounded-md p-2"
-                type="button"
-                onClick={() => setIsEditing(true)}
-              >
-                Edit
-              </button>
-            )}
-            {successMessage && (
-              <p className="text-green-500">{successMessage}</p>
-            )}
-            {errorMessage && <p className="text-red-500">{errorMessage}</p>}
-          </form>
-        </>
+        <div className="w-full h-full flex flex-col items-center justify-center">
+          <h1 className="text-2xl font-bold text-gray-500 mb-10">
+            You have not written any reviews yet
+          </h1>
+          <Link to="/explore">
+            <button className="border-2 border-gray-800 text-gray-800 font-bold py-2 px-4 rounded">
+              Go to Tours
+            </button>
+          </Link>
+        </div>
       )}
     </div>
   );
 };
 
-export default Setting;
+export default MyReview;
