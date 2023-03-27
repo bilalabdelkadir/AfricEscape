@@ -7,6 +7,8 @@ import Slider from "react-slick";
 import Reviews from "../components/Reviews";
 import Book from "../components/Book";
 import Footer from "../components/Footer";
+import { useAuth } from "../Hooks/useAuth";
+import WriteReview from "../components/WriteReview";
 
 const TourPage = () => {
   const settings = {
@@ -23,6 +25,8 @@ const TourPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams();
   const [tour, setTour] = useState({});
+  const { authState } = useAuth();
+  const { token } = authState;
   useEffect(() => {
     const fetchTourData = async () => {
       const tour = await fetchTour(id);
@@ -30,8 +34,6 @@ const TourPage = () => {
       setTimeout(() => {
         setIsLoading(false);
       }, 1000);
-
-      console.log(tour);
     };
     fetchTourData();
   }, []);
@@ -114,7 +116,8 @@ const TourPage = () => {
                 </div>
               </div>
             )}
-            <Book />
+            {token && <WriteReview tourId={id} token={token} />}
+            <Book id={id} token={token} />
           </div>
         )}
       </div>
