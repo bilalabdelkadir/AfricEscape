@@ -42,6 +42,9 @@ const WriteReview = ({ tourId, token }) => {
 
     if (isValid) {
       setIsSubmitted(true);
+      setReviewText("");
+      setRating(0);
+
       try {
         const response = await axios.post(
           `https://africescape-api.onrender.com/api/v1/tours/${tourId}/reviews`,
