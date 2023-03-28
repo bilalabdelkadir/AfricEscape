@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import NavBar from "../components/NavBar";
 import axios from "axios";
+import Footer from "../components/Footer";
 
 const ContactUs = () => {
   const [firstName, setFirstName] = useState("");
@@ -131,6 +132,7 @@ const ContactUs = () => {
           )}{" "}
         </form>{" "}
       </div>{" "}
+      <Footer />
     </div>
   );
 };

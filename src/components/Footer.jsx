@@ -16,30 +16,25 @@ const Footer = () => {
           </Link>
           <ul className="flex flex-wrap justify-center items-center mb-6 text-sm text-gray-500 sm:mb-0 ">
             <li>
-              <Link to href="/about" className="mr-4 hover:underline md:mr-6 ">
+              <Link to="/about" className="mr-4 hover:underline md:mr-6 ">
                 About
               </Link>
             </li>
             <li>
               <Link
-                to
-                href="/privacy-policy"
+                to="/privacy-policy"
                 className="mr-4 hover:underline md:mr-6"
               >
                 Privacy Policy
               </Link>
             </li>
             <li>
-              <Link
-                to
-                href="/licensing"
-                className="mr-4 hover:underline md:mr-6 "
-              >
+              <Link to="/licensing" className="mr-4 hover:underline md:mr-6 ">
                 Licensing
               </Link>
             </li>
             <li>
-              <Link to href="/contact" className="hover:underline">
+              <Link to="/contact" className="hover:underline">
                 Contact
               </Link>
             </li>
@@ -48,7 +43,7 @@ const Footer = () => {
         <hr className="my-6 border-gray-200 sm:mx-auto lg:my-8" />
         <span className="flex items-center justify-center text-sm text-gray-500 sm:text-center ">
           ©
-          <Link to href="/" className="hover:underline">
+          <Link to="/" className="hover:underline">
             AfricEscape™
           </Link>
           . All Rights Reserved.
