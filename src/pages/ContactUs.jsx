@@ -49,13 +49,13 @@ const ContactUs = () => {
       <NavBar />
       <div className="my-10 md:my-20 lg:my-28 flex flex-col max-w-5xl mx-auto items-center justify-center">
         <h1 className="text-3xl md:text-4xl font-bold mb-4">Contact Us</h1>
-        <p className="text-lg md:text-xl mb-8">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-          voluptas.
+        <p className="text-sm md:text-lg mb-8 w-1/2 text-center text-gray-500">
+          please if you have any question feel free to messegae us we will
+          respond as soon as possible
         </p>
         <form className="w-full max-w-lg" onSubmit={handleSubmit}>
           <div className="flex flex-wrap mb-6">
-            <div className="w-full md:w-1/2 mb-6 md:mb-0">
+            <div className="w-full md:w-1/2 mb-6 md:mb-0 ">
               <label
                 className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 htmlFor="first-name"
@@ -123,7 +123,7 @@ const ContactUs = () => {
             <p className="text-green-500 mb-6">Message sent successfully!</p>
           ) : (
             <button
-              className="bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+              className="bg-primary hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-5 rounded"
               type="submit"
             >
               {" "}
