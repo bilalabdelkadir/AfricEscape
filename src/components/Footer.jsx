@@ -1,44 +1,56 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
     <footer className="bg-white rounded-t-xl new-shadow mx-auto mt-4 text-primary">
       <div className="w-full container mx-auto p-4 md:px-6 md:py-8">
         <div className="sm:flex sm:items-center sm:justify-around">
-          <a href="/" className="flex justify-center items-center mb-4 sm:mb-0">
+          <Link
+            to="/"
+            className="flex justify-center items-center mb-4 sm:mb-0"
+          >
             <span className="self-center text-2xl font-semibold whitespace-nowrap ">
               AfricEscape
             </span>
-          </a>
+          </Link>
           <ul className="flex flex-wrap justify-center items-center mb-6 text-sm text-gray-500 sm:mb-0 ">
             <li>
-              <a href="#" className="mr-4 hover:underline md:mr-6 ">
+              <Link to href="/about" className="mr-4 hover:underline md:mr-6 ">
                 About
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="mr-4 hover:underline md:mr-6">
+              <Link
+                to
+                href="/privacy-policy"
+                className="mr-4 hover:underline md:mr-6"
+              >
                 Privacy Policy
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="mr-4 hover:underline md:mr-6 ">
+              <Link
+                to
+                href="/licensing"
+                className="mr-4 hover:underline md:mr-6 "
+              >
                 Licensing
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:underline">
+              <Link to href="/contact" className="hover:underline">
                 Contact
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
         <hr className="my-6 border-gray-200 sm:mx-auto lg:my-8" />
         <span className="flex items-center justify-center text-sm text-gray-500 sm:text-center ">
           ©
-          <a href="/" className="hover:underline">
+          <Link to href="/" className="hover:underline">
             AfricEscape™
-          </a>
+          </Link>
           . All Rights Reserved.
         </span>
       </div>

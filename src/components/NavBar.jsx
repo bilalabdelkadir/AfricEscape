@@ -29,13 +29,13 @@ const NavBar = () => {
         <div className="hidden md:hidden text-sm lg:flex lg:justify-around lg:items-center ">
           <ul className="flex-centered">
             <li className="px-4 hover-underline-animation ">
-              <a href="/explore">Discover</a>
+              <Link to="/explore">Discover</Link>
             </li>
             <li className="px-4 hover-underline-animation ">
-              <a href="/Contact">Contact Us</a>
+              <Link to="/Contact">Contact Us</Link>
             </li>
             <li className="px-4 hover-underline-animation ">
-              <a href="/about">About Us</a>
+              <Link to="/about">About Us</Link>
             </li>
           </ul>
           <div className="hidden lg:flex">
@@ -86,13 +86,13 @@ const NavBar = () => {
           <div className="py-4 px-6">
             <ul className="flex flex-col mt-4 font-medium gap-4 ">
               <li className="py-2 border-b-2 border-border-color hover-underline-animation">
-                <a href="/explore">Discover</a>
+                <Link to="/explore">Discover</Link>
               </li>
               <li className="py-2 border-b-2 border-border-color">
-                <a href="/Contact">Contact Us</a>
+                <Link to="/Contact">Contact Us</Link>
               </li>
               <li className="py-2 border-b-2 border-border-color">
-                <a href="/about">About US</a>
+                <Link to="/about">About US</Link>
               </li>
             </ul>
           </div>
