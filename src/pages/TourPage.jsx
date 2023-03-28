@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
 import { fetchTour } from "../utils/api";
 import Spinner from "../components/Spinner";
 import NavBar from "../components/NavBar";
@@ -9,7 +8,8 @@ import Book from "../components/Book";
 import Footer from "../components/Footer";
 import { useAuth } from "../Hooks/useAuth";
 import WriteReview from "../components/WriteReview";
-
+import { useQuery } from 'react-query'
+// react query for isLoading and isError functionality
 const TourPage = () => {
   const settings = {
     className: "center",
@@ -22,21 +22,14 @@ const TourPage = () => {
     slidesToScroll: 1,
   };
 
-  const [isLoading, setIsLoading] = useState(true);
+  
   const { id } = useParams();
-  const [tour, setTour] = useState({});
   const { authState } = useAuth();
   const { token } = authState;
-  useEffect(() => {
-    const fetchTourData = async () => {
-      const tour = await fetchTour(id);
-      setTour(tour);
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 1000);
-    };
-    fetchTourData();
-  }, []);
+
+  let {data, isError, isLoading} = useQuery('tour', () => fetchTour(id), {refetchOnWindowFocus: false, retry: 1})
+ 
+  const tour = data
 
   return (
     <>
@@ -45,6 +38,10 @@ const TourPage = () => {
         {isLoading ? (
           <div className="w-screen h-screen flex justify-center items-center">
             <Spinner />
+          </div>
+        ) : isError ? (
+          <div className="w-screen h-screen flex justify-center items-center">
+            <span>Error happend while fetching data!</span>
           </div>
         ) : (
           <div className="mt-20 max-w-[1240px] mx-auto ">
