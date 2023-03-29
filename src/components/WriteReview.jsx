@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import { makeReview } from "../utils/api";
 
 const WriteReview = ({ tourId, token }) => {
   const [rating, setRating] = useState(0);
@@ -45,15 +45,7 @@ const WriteReview = ({ tourId, token }) => {
       setReviewText("");
       setRating(0);
       try {
-        const response = await axios.post(
-          `https://africescape-api.onrender.com/api/v1/tours/${tourId}/reviews`,
-          { review: reviewText, rating },
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await makeReview(tourId, reviewText, rating, token)
         console.log(response.data);
       } catch (error) {
         console.log(error.message);

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { fetchUser } from "../utils/api";
 import { useAuth } from "../Hooks/useAuth";
-import axios from "axios";
+import { updateMe } from "../utils/api";
 import { CgProfile } from "react-icons/cg";
+import Config from "../utils/config";
 import Spinner from "./Spinner";
 
 const Setting = () => {
@@ -49,16 +50,7 @@ const Setting = () => {
         formData.append("photo", profilePic);
       }
 
-      const res = await axios({
-        method: "PATCH",
-        url: "https://africescape-api.onrender.com/api/v1/users/updateMe",
-        // url: "http://localhost:3000/api/v1/users/updateMe",
-        data: formData,
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const res = await updateMe(formData, token)
       setProfile(res.data.data.photo)
       setPreview(null)
       setSuccessMessage("Profile updated successfully!");
@@ -91,7 +83,7 @@ const Setting = () => {
           ) : (
             <div className="rounded-full bg-white p-4">
               <img
-                src={`https://africescape-api.onrender.com/img/users/${profilePic}`}
+                src={`${Config.userPic}/${profilePic}`}
                 alt="profile"
                 className="rounded-full h-24 w-24 object-cover"
               />
