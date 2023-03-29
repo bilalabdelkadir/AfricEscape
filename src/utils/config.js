@@ -1,4 +1,5 @@
-const BACKEND_URI = 'https://africescape-api.onrender.com'
+// const BACKEND_URI = 'https://africescape-api.onrender.com'
+const BACKEND_URI = 'http://localhost:5000'
 
 const baseUrl = `${BACKEND_URI}/api/v1/tours`
 const bookUrl = `${BACKEND_URI}/api/v1/bookings`

@@ -13,6 +13,7 @@ const Setting = () => {
   const [name, setname] = useState("");
   const [email, setemail] = useState("");
   const [profilePic, setProfile] = useState(null);
+  const [profileToShow, setProfileToShow] = useState(null);
   const [preview, setPreview] = useState(null);
   const [isloading, setisloading] = useState(true);
   const [isEditing, setIsEditing] = useState(false);
@@ -28,8 +29,10 @@ const Setting = () => {
         setemail(user.data.email);
         if (user.data.photo === "undefined") {
           setProfile(null);
+          setProfileToShow(null);
         } else {
           setProfile(user.data.photo);
+          setProfileToShow(user.data.photo);
         }
         setisloading(false);
       } catch (error) {
@@ -48,10 +51,11 @@ const Setting = () => {
       formData.append("email", email);
       if (profilePic) {
         formData.append("photo", profilePic);
+        // formData.append('photo', document.getElementById('photo').files[0]);
       }
 
       const res = await updateMe(formData, token)
-      setProfile(res.data.data.photo)
+      setProfileToShow(res.data.data.photo)
       setPreview(null)
       setSuccessMessage("Profile updated successfully!");
       setIsEditing(false);
@@ -64,7 +68,7 @@ const Setting = () => {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      // setProfile(file);
+      setProfile(file);
       setPreview(URL.createObjectURL(file));
     }
   };
@@ -83,7 +87,7 @@ const Setting = () => {
           ) : (
             <div className="rounded-full bg-white p-4">
               <img
-                src={`${Config.userPic}/${profilePic}`}
+                src={`${Config.userPic}/${profileToShow}`}
                 alt="profile"
                 className="rounded-full h-24 w-24 object-cover"
               />

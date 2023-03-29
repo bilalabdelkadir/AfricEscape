@@ -3,7 +3,7 @@ import Config from "./config";
 
 const baseUrl = Config.baseUrl
 const userUrl = Config.userUrl
-const bookUrl = Config.baseUrl
+const bookUrl = Config.bookUrl
 
 // get all books
 export const fetchTours = () =>
