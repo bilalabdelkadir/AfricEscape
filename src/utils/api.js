@@ -13,7 +13,7 @@ export const fetchTours = () =>
 export const fetchTour = (id) => 
       axios.get(`${baseUrl}/${id}`).then(response => response.data.data.data)
 
-// fetch one tour by id
+// make review
 export const makeReview = (tourId, reviewText, rating, token) => 
       axios.post(
         `${baseUrl}/${tourId}/reviews`,
@@ -25,11 +25,11 @@ export const makeReview = (tourId, reviewText, rating, token) =>
         }
       );
 
-// fetch one tour by id
+// login user
 export const logIn = async (email, password) => 
     await axios.post(`${userUrl}/login`, {email, password} )
 
-// fetch one tour by id
+// signup user
 export const signUp = async (name, email, password, passwordConfirm) => 
     await axios.post(`${userUrl}/signup`, { name, email, password, passwordConfirm } )
 
