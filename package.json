@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "cross-env vite build && rm ./server/dist -rf && cp dist/ ./server/ -r",
-    "start": "node ./server/index.js",
+    "start": "cross-env cd ./server/ && npm start",
     "preview": "vite preview"
   },
   "dependencies": {
