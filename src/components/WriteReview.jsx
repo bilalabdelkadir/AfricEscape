@@ -1,13 +1,24 @@
 import React, { useState } from "react";
 import { makeReview } from "../utils/api";
+import { useMutation } from "react-query";
+import { useQueryClient } from "react-query";
 
 const WriteReview = ({ tourId, token }) => {
+  const queryClient = useQueryClient()
+  
+  const reviewMutation = useMutation(makeReview({ tourId, token }), {
+    onSuccess: () => queryClient.invalidateQueries(['tour']),
+    onError: (error) => console.log(error)
+  } )
+  
   const [rating, setRating] = useState(0);
   const [reviewText, setReviewText] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isopen, setIsOpen] = useState(false);
   const [ratingError, setRatingError] = useState("");
   const [reviewTextError, setReviewTextError] = useState("");
+  
+  
 
   const handleRatingClick = (value) => {
     setRating(value);
@@ -45,8 +56,9 @@ const WriteReview = ({ tourId, token }) => {
       setReviewText("");
       setRating(0);
       try {
-        const response = await makeReview(tourId, reviewText, rating, token)
-        console.log(response.data);
+        // const response = await makeReview(tourId, reviewText, rating, token)
+        // console.log(response.data);
+        reviewMutation.mutate({reviewText, rating})
       } catch (error) {
         console.log(error.message);
       }

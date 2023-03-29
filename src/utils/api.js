@@ -3,7 +3,7 @@ import Config from "./config";
 
 const baseUrl = Config.baseUrl;
 const userUrl = Config.userUrl;
-const bookUrl = Config.baseUrl;
+const bookUrl = Config.bookUrl;
 
 // get all books
 export const fetchTours = () =>
@@ -14,16 +14,21 @@ export const fetchTour = (id) =>
   axios.get(`${baseUrl}/${id}`).then((response) => response.data.data.data);
 
 // make review
-export const makeReview = (tourId, reviewText, rating, token) =>
-  axios.post(
-    `${baseUrl}/${tourId}/reviews`,
-    { review: reviewText, rating },
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
+export const makeReview = ({ tourId, token }) => {
+  return ({ reviewText, rating }) =>
+    axios.post(
+      `${baseUrl}/${tourId}/reviews`,
+      {
+        review: reviewText,
+        rating,
       },
-    }
-  );
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+};
 
 // login user
 export const logIn = async (email, password) =>

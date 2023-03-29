@@ -30,8 +30,6 @@ const Book = ({ id, token }) => {
   const { authState } = useAuth();
   const navigate = useNavigate();
 
-  console.log(status, "the status");
-  console.log(error, "the error");
   const bookHandler = () => {
     if (authState.token) {
       // only book if user is logged in
