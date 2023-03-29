@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-import axios from "axios";
+import { logIn, signUp } from "../utils/api";
 
 export const AuthContext = createContext();
 
@@ -15,13 +15,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     try {
       setAuthState({ ...authState, loading: true });
-      const response = await axios.post(
-        "https://africescape-api.onrender.com/api/v1/users/login",
-        {
-          email,
-          password,
-        }
-      );
+      const response = await logIn(email, password)
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("user", response.data.data.user);
       setAuthState({
@@ -44,10 +38,7 @@ export const AuthProvider = ({ children }) => {
   const signup = async (name, email, password, passwordConfirm) => {
     try {
       setAuthState({ ...authState, loading: true });
-      const response = await axios.post(
-        "https://africescape-api.onrender.com/api/v1/users/signup",
-        { name, email, password, passwordConfirm }
-      );
+      const response = await signUp(name, email, password, passwordConfirm)
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("user", response.data.data.user);
       setAuthState({

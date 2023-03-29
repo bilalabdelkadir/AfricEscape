@@ -16,6 +16,7 @@ const myBooking = () => {
       const res = await cancelBooking(token, id);
       console.log(res);
       setCancelmessage("Booking Cancelled");
+      setMyBooking({data: myBooking.data.filter(b => b._id !== id)})
     } catch (err) {
       console.log(err);
     }
