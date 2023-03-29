@@ -14,16 +14,18 @@ export const fetchTour = (id) =>
       axios.get(`${baseUrl}/${id}`).then(response => response.data.data.data)
 
 // make review
-export const makeReview = (tourId, reviewText, rating, token) => 
-      axios.post(
-        `${baseUrl}/${tourId}/reviews`,
-        { review: reviewText, rating },
-        {
+export const makeReview = ({ tourId, token }) => {
+  return ({reviewText, rating}) => axios.post(
+      `${baseUrl}/${tourId}/reviews`, 
+        { 
+          review: reviewText, 
+          rating 
+        }, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
-      );
+        });
+}
 
 // login user
 export const logIn = async (email, password) => 
