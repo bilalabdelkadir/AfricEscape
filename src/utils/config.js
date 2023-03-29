@@ -1,7 +1,9 @@
-const baseUrl = "https://africescape-api.onrender.com/api/v1/tours"
-const bookUrl = "https://africescape-api.onrender.com/api/v1/bookings"
-const userUrl = "https://africescape-api.onrender.com/api/v1/users"
-const userPic = "https://africescape-api.onrender.com/img/users"
+const BACKEND_URI = 'https://africescape-api.onrender.com'
+
+const baseUrl = `${BACKEND_URI}/api/v1/tours`
+const bookUrl = `${BACKEND_URI}/api/v1/bookings`
+const userUrl = `${BACKEND_URI}/api/v1/users`
+const userPic = `${BACKEND_URI}/img/users`
 
 const Config = {baseUrl, bookUrl, userUrl, userPic}
 
